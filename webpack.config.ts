@@ -19,6 +19,8 @@ if (process.env.NODE_ENV !== 'production') {
 	}))();
 
 	config.devtool = 'hidden-source-map';
+} else {
+	config.output.publicPath = '/state-of-js-salary/';
 }
 
 export default config;
