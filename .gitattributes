@@ -2,3 +2,4 @@
 *       eol=lf
 *.png   -text eol=crlf
 *.jpg   -text eol=crlf
+*.bin   -text eol=crlf
