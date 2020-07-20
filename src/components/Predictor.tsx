@@ -1,11 +1,13 @@
+/* eslint-disable camelcase */
 import React, {PureComponent, ReactNode, Fragment} from 'react';
 import * as tf from '@tensorflow/tfjs';
+
 // @ts-ignore
 import AnimatedNumber from 'animated-number-react';
 import i18n from 'i18next';
 import styled from 'styled-components';
-import {Accordion, Button, Input, RadioGroup, Header} from '@fluentui/react-northstar';
-import predict from '../utils/predict'
+import {Accordion, Input, RadioGroup, Header} from '@fluentui/react-northstar';
+import predict from '../utils/predict';
 
 type Props = {}
 
@@ -91,7 +93,7 @@ const DEFAULT_DATA: DataSet = {
 	nwjs: 3,
 	reactnative: 3,
 	yearsXp: 5
-}
+};
 
 const SURVEY_OPINIONS = [
 	'building_js_apps_overly_complex',
@@ -184,9 +186,9 @@ const SURVEY_TOOLS = [
 const Question = styled.p`
 	padding: 0.5em 0;
 	font-size: 1.4em;
-`
+`;
 
-const formatValue = (value: number) =>
+const formatValue = (value: number): string =>
 	Math.round(value).toLocaleString(undefined, {style: 'currency', currency: 'USD'}).split('.00')[0];
 
 class Predictor extends PureComponent<Props, State> {
@@ -201,9 +203,20 @@ class Predictor extends PureComponent<Props, State> {
 	}
 
 	async componentDidMount(): Promise<void> {
-		this.model = await tf.loadLayersModel('/data/stateOfJs-final.json');
+		this.model = await tf.loadLayersModel('data/stateOfJs-final.json');
 		this.setState({
 			predicted: Math.max(0, predict(DEFAULT_DATA, this.model))
+		});
+	}
+
+	async componentDidUpdate(): Promise<void> {
+		const data = {
+			...DEFAULT_DATA,
+			...this.state
+		};
+
+		this.setState({
+			predicted: Math.max(0, predict(data, this.model))
 		});
 	}
 
@@ -218,17 +231,6 @@ class Predictor extends PureComponent<Props, State> {
 	handleYearChange(e: {}, data: {name: string; value: string}): void {
 		this.setState({
 			[data.name]: parseInt(data.value)
-		});
-	}
-
-	async componentDidUpdate(): Promise<void> {
-		let data = {
-			...DEFAULT_DATA,
-			...this.state
-		};
-
-		this.setState({
-			predicted: Math.max(0, predict(data, this.model))
 		});
 	}
 
@@ -250,7 +252,7 @@ class Predictor extends PureComponent<Props, State> {
 			Total Years of Experience <Input
 				name="yearsXp"
 				onChange={this.handleYearChange}
-				defaultValue={5}
+				defaultValue="5"
 				type="number"
 				placeholder="Total years..."
 			/>
@@ -301,11 +303,12 @@ class Predictor extends PureComponent<Props, State> {
 											value: 1
 										}
 									]} />
-							</Fragment>
+							</Fragment>)
 					},
 					{
 						title: <span>
-							<strong>Happiness:</strong> How happy are you with the current overall state of each category?
+							<strong>Happiness:</strong>&nbsp;
+							How happy are you with the current overall state of each category?
 						</span>,
 						content: SURVEY_HAPPINESS.map((name) =>
 							<Fragment key={name}>
@@ -347,12 +350,12 @@ class Predictor extends PureComponent<Props, State> {
 											value: 1
 										}
 									]} />
-							</Fragment>
+							</Fragment>)
 					},
 					{
 						title: <span>
 							<strong>Features:</strong> For each JS feature, have you heard of it and do you use it?
-					</span>,
+						</span>,
 						content: SURVEY_FEATURES.map((name) =>
 							<Fragment key={name}>
 								<Question>
@@ -381,11 +384,12 @@ class Predictor extends PureComponent<Props, State> {
 											value: 3
 										}
 									]} />
-							</Fragment>
+							</Fragment>)
 					},
 					{
 						title: <span>
-							<strong>Tools and Frameworks:</strong> For each tool, have you heard of it and do you use it?
+							<strong>Tools and Frameworks:</strong>&nbsp;
+							For each tool, have you heard of it and do you use it?
 						</span>,
 						content: SURVEY_TOOLS.map((name) =>
 							<Fragment key={name}>
@@ -427,17 +431,17 @@ class Predictor extends PureComponent<Props, State> {
 											value: 1
 										}
 									]} />
-							</Fragment>
+							</Fragment>)
 					}
 				]}
 			/>
 			<p>
 				For brevity, the questions are summarized here, please see&nbsp;
-			<a
+				<a
 					target="_blank"
 					rel="noopener noreferrer"
 					href="https://2019.stateofjs.com/">The State Of JS 2019
-					</a> for more context on each section.
+				</a> for more context on each section.
 			</p>
 		</Fragment>;
 	}

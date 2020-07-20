@@ -8,15 +8,18 @@
   },
   "scripts": {
     "dev": "webpack-dev-server",
-    "build": "set NODE_ENV=production && webpack"
+    "build": "NODE_ENV=production webpack",
+    "lint": "npm run type-check && npm run lint:js",
+    "lint:js": "eslint . --ext .js,.jsx,.ts,.tsx --max-warnings 20",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@fluentui/react-northstar": "^0.50.0",
+    "@fluentui/react-northstar": "0.50.0",
     "@tensorflow/tfjs": "2.0.1",
-    "animated-number-react": "^0.1.1",
+    "animated-number-react": "0.1.1",
     "can-ndjson-stream": "1.0.2",
-    "i18next": "^19.6.2",
-    "ndjson": "^1.5.0",
+    "i18next": "19.6.2",
+    "ndjson": "1.5.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "styled-components": "5.1.1"
