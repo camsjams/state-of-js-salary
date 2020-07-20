@@ -203,7 +203,7 @@ class Predictor extends PureComponent<Props, State> {
 	}
 
 	async componentDidMount(): Promise<void> {
-		this.model = await tf.loadLayersModel('data/stateOfJs-final.json');
+		this.model = await tf.loadLayersModel('/state-of-js-salary/data/stateOfJs-final.json');
 		this.setState({
 			predicted: Math.max(0, predict(DEFAULT_DATA, this.model))
 		});
