@@ -1,0 +1,4 @@
+# Ensure all use LF.
+*       eol=lf
+*.png   -text eol=crlf
+*.jpg   -text eol=crlf
