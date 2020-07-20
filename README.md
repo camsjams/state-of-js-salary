@@ -2,6 +2,8 @@
 ## A theoretical salary calculator
 #### Derived from The State Of JS 2019 downloadable data using Machine Learning and Tensorflow.js
 
+[Live Demo](https://camsjams.github.io/state-of-js-salary/)
+
 ## Install
 >       $ npm install
 
