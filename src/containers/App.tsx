@@ -3,6 +3,7 @@ import React, {FC, Fragment} from 'react';
 import styled, {createGlobalStyle} from 'styled-components';
 import {Flex, Segment, Header, List, Image, QuestionCircleIcon} from '@fluentui/react-northstar';
 import Predictor from '../components/Predictor';
+import Training from '../components/Training';
 import cameronImage from '../assets/images/cameron.jpg';
 import mediumLogo from '../assets/images/medium-logo.png';
 import twitterLogo from '../assets/images/twitter-logo.png';
@@ -69,7 +70,8 @@ const App: FC = () =>
 				</Header>
 			</Segment>
 			<Segment>
-				<Predictor />
+				{window.location.hash === '#training-camp' && <Training />}
+				{window.location.hash !== '#training-camp' && <Predictor />}
 			</Segment>
 			<Segment
 				color="grey"

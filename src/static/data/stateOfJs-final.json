@@ -76,7 +76,7 @@
   "weightsManifest": [
     {
       "paths": [
-        "././stateOfJs-final.weights.bin"
+        "stateOfJs-final.weights.bin"
       ],
       "weights": [
         {

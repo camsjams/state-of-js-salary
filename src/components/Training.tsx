@@ -61,13 +61,15 @@ class Training extends PureComponent<Props, State> {
 
 	render(): ReactNode {
 		return <Fragment>
-			{!this.state.isLearning &&
+			<h2>Welcome to Training Camp</h2>
+			{this.state.isLearning ?
+				<strong>I am learning</strong> :
 				<Button
-					content="Train More"
+					content="Start Training"
 					onClick={this.handleClick}
 				/>}
 			{this.state.isDone &&
-				<span>Im done</span>}
+				<p>I am done learning, your browser should have downloaded the model</p>}
 		</Fragment>;
 	}
 }
