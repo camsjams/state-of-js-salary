@@ -76,7 +76,7 @@
   "weightsManifest": [
     {
       "paths": [
-        "././stateOfJs-final.weights.bin"
+        "/state-of-js-salary/data/stateOfJs-final.weights.bin"
       ],
       "weights": [
         {
