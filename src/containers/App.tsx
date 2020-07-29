@@ -81,7 +81,7 @@ const App: FC = () =>
 				<a
 					target="_blank"
 					rel="noopener noreferrer"
-					href="https://2019.stateofjs.com/">
+					href="https://medium.com/@cameron.manavian/a-2020-javascript-salary-tool-using-machine-learning-3fa67f0abfba">
 					Medium post
 				</a> for more information.
 			</Segment>
